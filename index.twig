@@ -10,8 +10,8 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="assets/normalize.css">
-    <link rel="stylesheet" href="assets/cajitas.css">
+    <link rel="stylesheet" href="{{ asset('assets/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/cajitas.css') }}">
 
 </head>
 <body>
@@ -27,29 +27,20 @@
 
         <header>
             <div class="logo">
-                <img src="assets/logo.png" alt="cajitas logo">
+                <img src="{{ asset('assets/logo.png') }}" alt="cajitas logo">
             </div>
         </header>
 
         <section class="lead">
-            <p>
-                Willkommen in der Welt der schreine & Totems <br>
-                „Cajitas“<br>
-                Öffnest du die törchen, so betritt dein Blick eine sphäre 
-                mit einem bestimmten thema, einer bestimmten Stimmung: Liebe, Fernweh, Erinnerungen, Exotisches, 
-                Persönliches, Heiliges...
-            </p>
-            <p>
-                Cajitas können auch individuell bestellt werden.
-            </p>
+            {{ record.introduction }}
         </section>
 
         <section class="verzierung">
-            <img src="assets/verzierung.png" alt="" class="verzierung">
+            <img src="{{ asset('assets/verzierung.png') }}" alt="" class="verzierung">
         </section>
 
         <section class="news" id="news">
-            <p>Willkomen in der Welt der Schreine & Totems "Cajitas".<br><br>Öffnest du die Törchen Öffnest du die Törchen. Öffnest du die Törchen Öffnest du die Törchen Öffnest du die Törchen. Öffnest du die Törchen Öffnest du die Törchen.</p>
+            {{ record.news }}
         </section>
 
         <section class="cajitas">
@@ -91,59 +82,25 @@
         </section>
 
         <section class="inbetween">
-            <p>
-                weitere 2 oder evtl 3 reihen mit je 3 fotos<br><br>
-                die muss ich selber austauschen können
-            </p>
+            {{ record.intermezzo }}
         </section>
 
         <section class="totems" id="photos">
-            <div class="totem">
-                <img src="assets/Totem1.JPG" alt="">
-            </div>
-            <div class="totem">
-                <img src="assets/Totem2.JPG" alt="">
-            </div>
-            <div class="totem">
-                <img src="assets/Totem3.jpeg" alt="">
-            </div>
-            <div class="totem">
-                <img src="assets/Totem4.JPG" alt="">
-            </div>
-            <div class="totem">
-                <img src="assets/Totem5.jpeg" alt="">
-            </div>
-            <div class="totem">
-                <img src="assets/Totem6.jpg" alt="">
-            </div>
+            {% for totem in record.totems %}
+                <div class="totem">
+                    <img src="{{ totem|thumbnail(800, 800) }}">
+                </div>
+            {% endfor %}
         </section>
 
         <section class="about" id="about">
             <p>Über mich</p>
-            <img src="assets/imAtelier.JPG" alt="">
-            <p>
-                Nicole Wiederkehr<br>
-                seit 1996 als freischaffende gestalterin und kunsthandwerkerin tätig.
-            </p><p>
-                Ausstellungen (auswahl):<br>
-                Galerie ONO Bern<br>
-                Galerie Atelier Worb<br>
-                Galeri Artis Büren an der Aare<br>
-                Galerie Neurotitan Berlin<br>
-                Galerie casita bern
-            </p>
-            <img src="assets/verzierung.png" alt="" class="verzierung reverse">
-            <p>
-                Ausstattungen, Dekorationen, <br>
-                gestaltungsaufträge für <br>
-                schaufenster,innen-&aussenräume
-            </p>
-            <img src="assets/verzierung.png" alt="" class="verzierung">
-            <p id="contact">
-                Kontakt: <a href="mailto:nicole@cajitas.ch">nicole@cajitas.ch</a><br>
-                079 416 66 81<br>
-                instagram: <a href="https://instagram.com/cajitas_bern">cajitas_bern</a>
-            </p>
+            <img src="{{ record.about_image|thumbnail(800, 800) }}">
+            {{ record.about }}
+            <img src="{{ asset('assets/verzierung.png') }}" alt="" class="verzierung reverse">
+            {{ record.offer }}
+            <img src="{{ asset('assets/verzierung.png') }}" alt="" class="verzierung">
+            {{ record.contact }}
         </section>
 
     </div>

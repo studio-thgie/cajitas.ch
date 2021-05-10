@@ -81,7 +81,9 @@
             <img src="{{ asset('assets/verzierung.png') }}" alt="" class="verzierung reverse">
             {{ record.offer }}
             <img src="{{ asset('assets/verzierung.png') }}" alt="" class="verzierung">
-            {{ record.contact }}
+            <div id="contact">
+                {{ record.contact }}
+            </div>
         </section>
 
     </div>
@@ -95,7 +97,7 @@
         cajitas.forEach((el, i) => {
             el.addEventListener('mouseenter', (evt) => {
                 next(el);
-                slideshow = setInterval(() => next(el), 1000); 
+                slideshow = setInterval(() => next(el), 500); 
             });
             el.addEventListener('mouseleave', (evt) => {
                 clearInterval(slideshow);
